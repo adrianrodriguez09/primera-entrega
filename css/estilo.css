@@ -91,7 +91,7 @@ cursor: pointer;
   }
   #boton-carrito:hover {
     cursor: pointer;
-    color: white;
+    color: rgb(255, 255, 255);
     background-color:#ffb762;
   }
   #boton-carrito:focus {
