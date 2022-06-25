@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+    <meta charset="UTF-8">
+    <title>HOTEL"Marias"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <h1>HOTEL MARIAS</h1>    
+    <p>AGREGA EL SERVICIO QUE TE GUSTARIA QUE TENGAMOS</p>
+    <div>
+        <input type="text" id="inputServicio" placeholder="nombre del servicio">
+        <input type="number" id="inputImporte" placeholder="precio que pagarias $">
+        <button id="btnCargar" class="primary">Cargar</button>
+        <button id="btnCancelar" class="secondary">Cancelar</button>
+    </div>
+
+
+    <div class="">
+        <h2>Listado de servicios</h2>
+        <ul>
+            <li>Listado de servicios agregados</li>
+        </ul>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="">
+        <h2>Tabla de servicios</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Importe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Descripción del servicio</td>
+                    <td>Importe</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/storagelog.js"></script>
+    <script src="js/storage.js"></script>
+    
+</body>
+</html>
