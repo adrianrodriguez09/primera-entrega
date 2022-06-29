@@ -13,7 +13,7 @@ const link = document.getElementById('link')
 
 const button = document.getElementById('ir')
 button.addEventListener("click", ()=> {
-  location.href = "form.html"
+  location.href = "registrate.html"
 })
 
  mostrarProductos()
@@ -21,14 +21,14 @@ button.addEventListener("click", ()=> {
 function mostrarProductos(){
 stockHabitaciones.forEach(el =>{
     let div = document.createElement('div')
-    div.className = 'producto'
+    div.classList.add('producto')
     div.innerHTML =  ` <div class="producto">
     <div class="card">
       <div class="card-image">
         <img src="${el.img}">
         <span class="card-title">${el.nombre}</span>
         <a id="boton${el.id}" class="btn-floating halfway-fab waves-effect waves-light "><i
-            // class="material-icons">add_shopping_cart</i>></a>
+             class="material-icons">add_shopping_cart</i></a>
       </div>
       <div class="card-content">
         <p>${el.desc}</p>
@@ -43,7 +43,7 @@ stockHabitaciones.forEach(el =>{
       botonAgregar.addEventListener('click',()=>{
 
        agregarAlCarrito(el.id);
-       
+     
       })
      
 
@@ -59,6 +59,7 @@ let habitacionAgregar = stockHabitaciones.find(item=>item.id === id)
 carritoDeCompras.push(habitacionAgregar)
 mostrarCarrito(habitacionAgregar)
 actualizarCarrito()
+guardarEnLs()
 }
 
 function mostrarCarrito(habitacionAgregar){
@@ -66,18 +67,41 @@ function mostrarCarrito(habitacionAgregar){
   let div = document.createElement('div')
   div.setAttribute('class','productocarrito')
   div.innerHTML= `
-  <p>${habitacionAgregar.nombre}</p>
+  <p>nombre:${habitacionAgregar.nombre}</p>
 <p>precio:${habitacionAgregar.precio}</p>
 <p>Descripcion:${habitacionAgregar.desc}</p>
-
-  
+<button id="eliminar${habitacionAgregar.id}" class="btn btn-primary">borrar</button>
+<button id="pagar" class="btn btn-outline-success">pagar</button>
   `
   contenedorCarritos.appendChild(div)
+
+  let btnEliminar = document.getElementById(`eliminar${habitacionAgregar.id}`)
+  btnEliminar.addEventListener('click',()=>{
+  btnEliminar.parentElement.remove()
+  carritoDeCompras = carritoDeCompras.filter(elemento => elemento.id !== habitacionAgregar.id)
+  actualizarCarrito()
+  })
 }
 
 function actualizarCarrito(){
 contadorCarrito.innerText = carritoDeCompras.length
 precioTotal.innerText = carritoDeCompras.reduce((acc,el)=> acc + el.precio, 0)
+
 }
 
 
+function guardarEnLs(){
+  localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras))
+}
+
+window.onload = function(){
+  const storage = JSON.parse(localStorage.getItem("carridoDeCompras"));
+  if(storage){
+    carritoDeCompras = storage;
+    mostrarCarrito()
+  }
+}
+
+
+ 
+ 
